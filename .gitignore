@@ -1,0 +1,29 @@
+# python
+*.pyc
+*.pyo
+.installed.cfg
+bin
+develop-eggs
+dist
+downloads
+eggs
+parts
+src/*.egg-info
+lib
+lib64
+
+# ide-s
+.vscode
+.idead
+
+# virtualenvs
+env
+venv
+virtualenv
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
