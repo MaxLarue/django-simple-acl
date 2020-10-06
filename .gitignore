@@ -14,7 +14,7 @@ lib64
 
 # ide-s
 .vscode
-.idead
+.idea
 
 # virtualenvs
 env
