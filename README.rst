@@ -14,12 +14,12 @@ Features:
 Summary
 ============
 
-    - installation :ref:`_install`
-    - configuration :ref:`_config`
-    - usage :ref:`_usage`
-    - gotchas :ref:`_gotchas`
-    - testing :ref:`_testing`
-    - rest framework :ref:`_drf`
+    - installation `install_`
+    - configuration `config_`
+    - usage `usage_`
+    - gotchas `gotchas_`
+    - testing `testing_`
+    - rest framework `drf_`
 
 .. _install:
 
