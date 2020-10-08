@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.contrib.auth.models import Group, Permission
 from parameterized import parameterized
 from simpleacls.testutils import AclTestMixin
-from testautoload.models import Order, Product, Invoice, InvoiceProposition
 from testautoload.groups import DRIVER, SHOP_EMPLOYEE, SALESMAN, ACCOUNTANT, MANAGER
 
 
