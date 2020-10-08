@@ -2,9 +2,9 @@ from unittest import TestCase
 from parameterized import parameterized
 from django.test import TestCase as DjangoTestCase
 from django.contrib.auth.models import Group, Permission
-from aclgroups.acls import BuiltinAclFlag
-from aclgroups.acls import C, R, U, D
-from aclgroups.acls import create_groups, set_models_acl
+from simpleacls.acls import BuiltinAclFlag
+from simpleacls.acls import C, R, U, D
+from simpleacls.acls import create_groups, set_models_acl
 from tests.models import Article, Subject
 
 

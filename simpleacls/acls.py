@@ -1,6 +1,7 @@
-import django.apps
+import importlib
 from collections import defaultdict
 from django.contrib.auth.models import Group, Permission
+from django.conf import settings
 
 
 class AclFlag:
@@ -41,6 +42,27 @@ def create_groups(groups):
     """
     for group_name in groups:
         Group.objects.get_or_create(name=group_name)
+
+
+def initialize():
+    groups = []
+    acls = []
+    if hasattr(settings, "SIMPLE_ACLS"):
+        acl_settings = getattr(settings, "SIMPLE_ACLS")
+        groups = acl_settings.get("groups", [])
+        acl_paths = acl_settings.get("acls", [])
+        acls = load_models_acls(acl_paths)
+    create_groups(groups)
+    set_models_acl(acls)
+
+
+def load_models_acls(acl_path_list):
+    loaded_list = []
+    for path in acl_path_list:
+        module_path, object_name = path.rsplit(".", 1)
+        module = importlib.import_module(module_path)
+        loaded_list.append(getattr(module, object_name))
+    return loaded_list
 
 
 def set_models_acl(acl_list):

@@ -13,7 +13,7 @@ Installation
 ============
 
 #. `pip install django-groups-acl`
-#. Add `'aclgroups'` to `INSTALLED_APPS`
+#. Add `'simpleacls'` to `INSTALLED_APPS`
 
 Configuration
 =============
