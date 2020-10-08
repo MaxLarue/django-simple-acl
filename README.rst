@@ -14,12 +14,12 @@ Features:
 Summary
 ============
 
-    - installation install_
-    - configuration config_
-    - usage usage_
-    - gotchas gotchas_
-    - testing testing_
-    - rest framework drf_
+    - install_
+    - config_
+    - usage_
+    - gotchas_
+    - testing_
+    - restframework_
 
 .. _install:
 
@@ -150,7 +150,7 @@ tests. Here is an example how to:
         def test_something(self):
             some = Group.objects.get(name="some_groups")  # this group and it's permissions were created
 
-.. _drf:
+.. _restframework:
 
 Usage with rest framework
 =====
