@@ -2,7 +2,8 @@
 django-simple-acl
 ============
 
-Configuring builtin groups and permissions declaratively from code as static access control lists
+Configuring builtin groups and permissions declaratively from code as static access control lists. Integrates with
+ django built-in model permissions
 
 Features:
 
@@ -130,3 +131,26 @@ tests. Here is an example how to:
 
         def test_something(self):
             some = Group.objects.get(name="some_groups")  # this group and it's permissions were created
+
+
+Usage with rest framework
+=====
+
+The fact permissions used are the django's models one makes it possible to use this package with any other package that
+integrate with those. As an example to leverage these permissions on a drf viewset, you'd use the DjangoModelPermissions
+class and you're set:
+
+.. code-block:: python
+
+    from rest_framework import viewsets
+    from rest_framework.permissions import DjangoModelPermissions
+    from myapp.models import MyCoolModel
+    from myapp.serializers import MyCoolModelSerializer
+
+    class CoolModelViewSet(viewsets.ModelViewSet):
+        queryset = MyCoolModel.objects.all()
+        serializer_class = MyCoolModelSerializer
+        permission_classes = [DjangoModelPermissions]
+
+
+This viewset will respect your acls, as the permissions live inside the database and are created upon startup.
