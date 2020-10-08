@@ -10,11 +10,26 @@ Features:
 - Define a list of groups that should exist at all time
 - Bind to each group a set of crud permissions to any model
 
+
+Summary
+============
+
+:ref:`_install`
+:ref:`_config`
+:ref:`_usage`
+:ref:`_gotchas`
+:ref:`_testing`
+:ref:`_drf`
+
+.. _install
+
 Installation
 ============
 
 #. `pip install django-groups-acl`
 #. Add `'simpleacls'` to `INSTALLED_APPS`
+
+.. _config
 
 Configuration
 =============
@@ -36,6 +51,7 @@ Configuration
         ]
     }
 
+.. _usage
 
 Usage
 =====
@@ -100,6 +116,7 @@ If you omit a group for a model, that group will have no permission on that mode
 If you define two sets of permissions for the same group, on the same model, they will be merged and duplicates removed.
 (meaning if you define two sets of permission, the resulting permission set will be the highest combination of both)
 
+.. _gotchas
 
 Gotchas
 =====
@@ -114,6 +131,7 @@ your application won't start (but you should see a warning about it).
 In other for permissions to be loaded inside your tests, you need to use the AclTestMixin (see the test section
 for detail).
 
+.. _testing
 
 Testing
 =====
@@ -132,6 +150,7 @@ tests. Here is an example how to:
         def test_something(self):
             some = Group.objects.get(name="some_groups")  # this group and it's permissions were created
 
+.. _drf
 
 Usage with rest framework
 =====
