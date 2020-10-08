@@ -14,12 +14,12 @@ Features:
 Summary
 ============
 
-    - installation `install_`
-    - configuration `config_`
-    - usage `usage_`
-    - gotchas `gotchas_`
-    - testing `testing_`
-    - rest framework `drf_`
+    - installation install_
+    - configuration config_
+    - usage usage_
+    - gotchas gotchas_
+    - testing testing_
+    - rest framework drf_
 
 .. _install:
 
