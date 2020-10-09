@@ -121,15 +121,10 @@ If you define two sets of permissions for the same group, on the same model, the
 Gotchas
 =====
 
-If you omit the SIMPLE_ACLS settings or make a typo in the name, no permission will be loaded
-
-If you need to define an empty set of permissions use `set()` as `{}` is an empty dictionary.
-
-If the acl path in SIMPLE_ACLS["acl"] is not valid (module does not exist or does not have the specified object). Then
-your application won't start (but you should see a warning about it).
-
-In other for permissions to be loaded inside your tests, you need to use the AclTestMixin (see the test section
-for detail).
+    - If you omit the SIMPLE_ACLS settings or make a typo in the name, no permission will be loaded
+    - If you need to define an empty set of permissions use `set()` as `{}` is an empty dictionary.
+    - If the acl path in SIMPLE_ACLS["acl"] is not valid (module does not exist or does not have the specified object). Then your application won't start (but you should see a warning about it).
+    - In order for permissions to be loaded inside your tests, you need to use the AclTestMixin (see the test section for detail).
 
 .. _testing:
 

@@ -2,6 +2,12 @@ import importlib
 from collections import defaultdict
 from django.contrib.auth.models import Group, Permission
 from django.conf import settings
+from simpleacls.exceptions import (
+    CouldNotCreateGroup,
+    CouldNotLoadAclDefinition,
+    GroupMissingForAclDefinition,
+    PermissionMissingForAclDefinition
+)
 
 
 class AclFlag:
@@ -41,7 +47,10 @@ def create_groups(groups):
     if they do not exist yet
     """
     for group_name in groups:
-        Group.objects.get_or_create(name=group_name)
+        try:
+            Group.objects.get_or_create(name=group_name)
+        except Exception as e:
+            raise CouldNotCreateGroup(group_name, e)
 
 
 def initialize():
@@ -59,10 +68,28 @@ def initialize():
 def load_models_acls(acl_path_list):
     loaded_list = []
     for path in acl_path_list:
-        module_path, object_name = path.rsplit(".", 1)
-        module = importlib.import_module(module_path)
-        loaded_list.append(getattr(module, object_name))
+        try:
+            module_path, object_name = path.rsplit(".", 1)
+            module = importlib.import_module(module_path)
+            loaded_list.append(getattr(module, object_name))
+        except ImportError:
+            raise CouldNotLoadAclDefinition(path)
     return loaded_list
+
+
+def get_group_or_throw(group_name):
+    try:
+        return Group.objects.get(name=group_name)
+    except Exception as e:
+        raise GroupMissingForAclDefinition(group_name)
+
+
+def get_permissions_or_throw(model_name, model_acls, group):
+    try:
+        return {f.get_permission_code(model_name)
+                for f in model_acls}
+    except Exception as e:
+        raise PermissionMissingForAclDefinition(model_name, group)
 
 
 def set_models_acl(acl_list):
@@ -78,9 +105,7 @@ def set_models_acl(acl_list):
         permission_names = set()
         for model, model_acls in group_acls.items():
             model_name = model._meta.model_name
-            permission_names |= {
-                f.get_permission_code(model_name) for f in model_acls
-            }
+            permission_names |= get_permissions_or_throw(model_name, model_acls, group_name)
         permissions = Permission.objects.filter(codename__in=permission_names)
-        group = Group.objects.get(name=group_name)
+        group = get_group_or_throw(group_name)
         group.permissions.set(permissions)
