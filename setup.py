@@ -6,7 +6,7 @@ README = open(os.path.join(here, 'README.rst')).read()
 
 setup(
     name='django-simple-acl',
-    version='0.1',
+    version='0.1.0',
     packages=['simpleacls'],
     description='Access control lists tied to django groups',
     long_description=README,
