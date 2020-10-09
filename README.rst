@@ -1,6 +1,6 @@
-============
+==================
 django-simple-acl
-============
+==================
 
 Configuring builtin groups and permissions declaratively from code as static access control lists. Integrates with
  django built-in model permissions
@@ -129,7 +129,7 @@ If you define two sets of permissions for the same group, on the same model, the
 .. _gotchas:
 
 Gotchas
-=====
+========
 
     - If the groups are not created and the permissions not linked on startup, maje sure you added 'simpleacls.apps.SimpleAclsConfig' to your installed apps
     - If you omit the SIMPLE_ACLS settings or make a typo in the name, no permission will be loaded
@@ -140,7 +140,7 @@ Gotchas
 .. _testing:
 
 Testing
-=====
+========
 
 The groups and permissions might not be setup correctly during your test (but they will be on application start). To
 avoid confusion, and make sure everything is setup correctly, you should use the AclTestMixin in your integration/end2end
@@ -159,7 +159,7 @@ tests. Here is an example how to:
 .. _restframework:
 
 Usage with rest framework
-=====
+==========================
 
 The fact permissions used are the django's models one makes it possible to use this package with any other package that
 integrate with those. As an example to leverage these permissions on a drf viewset, you'd use the DjangoModelPermissions

@@ -1,14 +1,14 @@
 Metadata-Version: 1.0
 Name: django-simple-acl
-Version: 0.1
+Version: 0.1.0
 Summary: Access control lists tied to django groups
 Home-page: https://github.com/MaxLarue/django-simple-acl/
 Author: MaxLarue
 Author-email: maximilienlarue@gmail.com
 License: MIT
-Description: ============
+Description: ==================
         django-simple-acl
-        ============
+        ==================
         
         Configuring builtin groups and permissions declaratively from code as static access control lists. Integrates with
          django built-in model permissions
@@ -36,6 +36,16 @@ Description: ============
         
         #. `pip install django-groups-acl`
         #. Add `'simpleacls'` to `INSTALLED_APPS`
+        
+        .. code-block:: python
+        
+            INSTALLED_APPS = [
+                ...
+                'simpleacls.apps.SimpleAclsConfig',
+                ...
+            ]
+        
+        NB: make sure to add 'simpleacls.apps.SimpleAclsConfig' to your installed apps, not simply simpleacls
         
         .. _config:
         
@@ -127,8 +137,9 @@ Description: ============
         .. _gotchas:
         
         Gotchas
-        =====
+        ========
         
+            - If the groups are not created and the permissions not linked on startup, maje sure you added 'simpleacls.apps.SimpleAclsConfig' to your installed apps
             - If you omit the SIMPLE_ACLS settings or make a typo in the name, no permission will be loaded
             - If you need to define an empty set of permissions use `set()` as `{}` is an empty dictionary.
             - If the acl path in SIMPLE_ACLS["acl"] is not valid (module does not exist or does not have the specified object). Then your application won't start (but you should see a warning about it).
@@ -137,7 +148,7 @@ Description: ============
         .. _testing:
         
         Testing
-        =====
+        ========
         
         The groups and permissions might not be setup correctly during your test (but they will be on application start). To
         avoid confusion, and make sure everything is setup correctly, you should use the AclTestMixin in your integration/end2end
@@ -156,7 +167,7 @@ Description: ============
         .. _restframework:
         
         Usage with rest framework
-        =====
+        ==========================
         
         The fact permissions used are the django's models one makes it possible to use this package with any other package that
         integrate with those. As an example to leverage these permissions on a drf viewset, you'd use the DjangoModelPermissions
