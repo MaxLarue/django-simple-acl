@@ -1,0 +1,14 @@
+MANIFEST.in
+README.rst
+requirements.txt
+setup.py
+django_simple_acl.egg-info/PKG-INFO
+django_simple_acl.egg-info/SOURCES.txt
+django_simple_acl.egg-info/dependency_links.txt
+django_simple_acl.egg-info/requires.txt
+django_simple_acl.egg-info/top_level.txt
+simpleacls/__init__.py
+simpleacls/acls.py
+simpleacls/apps.py
+simpleacls/exceptions.py
+simpleacls/testutils.py

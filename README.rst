@@ -29,6 +29,16 @@ Installation
 #. `pip install django-groups-acl`
 #. Add `'simpleacls'` to `INSTALLED_APPS`
 
+.. code-block:: python
+
+    INSTALLED_APPS = [
+        ...
+        'simpleacls.apps.SimpleAclsConfig',
+        ...
+    ]
+
+NB: make sure to add 'simpleacls.apps.SimpleAclsConfig' to your installed apps, not simply simpleacls
+
 .. _config:
 
 Configuration
@@ -121,6 +131,7 @@ If you define two sets of permissions for the same group, on the same model, the
 Gotchas
 =====
 
+    - If the groups are not created and the permissions not linked on startup, maje sure you added 'simpleacls.apps.SimpleAclsConfig' to your installed apps
     - If you omit the SIMPLE_ACLS settings or make a typo in the name, no permission will be loaded
     - If you need to define an empty set of permissions use `set()` as `{}` is an empty dictionary.
     - If the acl path in SIMPLE_ACLS["acl"] is not valid (module does not exist or does not have the specified object). Then your application won't start (but you should see a warning about it).
